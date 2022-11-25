@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>XKCD of the day</title>
+        <script src="seedrandom.js">
+        </script>
+        <style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#comic {
+    height: 100vh;
+    width: 100vw;
+    border: none;
+}
+        </style>
+        <script>
+const max = 2702;
+
+function getImg() {
+}
+
+function getNumber() {
+    var today = new Date();
+    Math.seedrandom(`${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`);
+    return Math.round(Math.random() * (max - 1) + 1);
+}
+
+function load() {
+    const number = getNumber();
+    setImg(`https://xkcd.com/${number}`);
+}
+
+function setImg(src) {
+    const comic = document.getElementById('comic');
+    comic.setAttribute('src', src);
+}
+        </script>
+    </head>
+    <body onload="load()">
+        <iframe id="comic"></iframe>
+    </body>
+</html>
